@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sellBill" pageWidth="600" pageHeight="550" orientation="Landscape" whenNoDataType="BlankPage" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9010f6e3-0257-4cfe-8a1c-879063aefe8f">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="selectedSells" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM sell,product WHERE sell.prod_id = product.prod_id AND sell_id IN ($P!{selectedSells}) ORDER BY sell.sell_id]]>
+	</queryString>
+	<field name="sell_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sell_price_unit" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sell_price" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sell_quantity" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sell_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prod_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="user_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prod_quantity" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="add_date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="image_url" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nbrSells" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nbrBuys" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="on_hold" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="sell_price_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{sell_price}]]></variableExpression>
+	</variable>
+	<variable name="sell_price_2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sell_price}]]></variableExpression>
+	</variable>
+	<variable name="sell_quantity_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{sell_quantity}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="131" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="165" y="0" width="199" height="131" uuid="43ef8549-79cc-492d-b9e6-b35457547a5a"/>
+				<imageExpression><![CDATA["D:\\mazen project\\GDP\\src\\JR\\logo.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="395" y="84" width="118" height="20" uuid="6a4477e2-315e-49fd-83a1-7c868a0c7002"/>
+				<textElement>
+					<font fontName="Century Schoolbook" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="485" y="80" width="64" height="20" uuid="388ae92d-5dc7-4fe3-93d7-e24bd8376157"/>
+				<textElement textAlignment="Justified">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[صدرت بــ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="47" width="68" height="31" uuid="68a23c8c-9dcc-4477-8423-ec101abeb106"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="463" y="47" width="71" height="33" uuid="24537052-b653-4a7b-aa8d-24736fc8538b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sell_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="395" y="11" width="115" height="34" uuid="566205c5-ecf5-4fce-a543-c2ea64c6fbd0"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[مذكرة داخلية]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="111" width="100" height="20" uuid="f45aca1b-d045-49a6-9eac-b413433be856"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[اسم المشتري :]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="36" y="43" width="111" height="22" uuid="5d7e7487-8483-4ab9-912f-7eaf1f052bb5"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="37" y="76" width="111" height="22" uuid="8a7285a6-62ff-4477-a24a-9ac35c588a82"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="37" y="45" width="109" height="20" uuid="74f19cdc-8dec-4ec1-b491-410940b5377b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[C-Type ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="78" width="109" height="20" uuid="7a3720b6-f3a8-4715-98f0-e44b21e6bbce"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[A-Type ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="417" y="42" width="68" height="1" uuid="63b69cdc-03ef-4760-9891-8173295045ab"/>
+			</line>
+			<frame>
+				<reportElement x="463" y="47" width="86" height="31" uuid="847e48cd-29f4-4dd4-96da-9a2cba7d25f9"/>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="269" y="0" width="66" height="33" uuid="c7e98238-1fe5-4626-b695-33c08ca173c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[سعر الحبة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="0" width="84" height="33" uuid="f1689810-df58-45c7-a3c7-0f52360c56e4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[العدد ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="0" width="141" height="33" uuid="49d19b36-9ca2-45f8-a82e-834a2d593d2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[اسم المنتج]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="0" width="93" height="33" uuid="cc6b586f-a82b-44c1-8d71-3605ab5db8a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[المبلغ المطلوب]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="30" width="524" height="1" uuid="b0dbc87d-9262-4d7a-9a46-3be2dabe704c"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="176" height="33" uuid="b0911fb6-c456-4780-9792-e18528bcbc16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[تاريخ ووقت الشراء]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="176" y="0" width="93" height="30" uuid="4d6cc53f-a52a-4b1b-8067-b1077eebddb5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sell_price} + ".00"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="84" height="30" uuid="6850b194-f620-4b2d-a67e-c516408be16c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sell_quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="0" width="141" height="30" uuid="49acb08e-42a7-484c-936c-3f44df33e791"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="0" y="0" width="176" height="30" uuid="5a1cc190-aa32-404b-a4a2-bd9a3daa29dc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sell_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="0" width="66" height="30" uuid="593a2b8b-3958-4017-9580-4a5bf4bc6386"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sell_price_unit} + ".00 "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="282" y="42" width="139" height="26" uuid="ad3a7c6a-3e26-4438-af75-ffd390db7a5f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="16" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[المبلغ الكلي]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="282" y="68" width="139" height="26" uuid="83eb4b67-d027-4d59-ba31-ead8de1c0b2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sell_price_2} + ".00 "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="421" y="42" width="139" height="26" uuid="48f25d83-2dae-49e2-a259-5fc45f1e4f17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="16" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[الكمية الكلية]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="421" y="68" width="139" height="26" uuid="1d086216-624c-45cc-8562-1c96d80cd400"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sell_quantity_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="76" y="42" width="100" height="20" uuid="307a7e8b-d6e9-4424-a260-dc5fd11fa8ce"/>
+				<text><![CDATA[اسم مشرف المبيعات وتوقيعه]]></text>
+			</staticText>
+			<line>
+				<reportElement x="76" y="77" width="100" height="1" uuid="ee8158ce-0a5a-4c8c-b01a-5cfc10b360aa"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="78" width="98" height="16" uuid="7abd5bb9-99cc-4b11-92cc-a871fa6d6ea5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[يجب توقيع الوصل ليتم اعتماده]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
